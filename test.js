@@ -106,8 +106,9 @@ app.post('/userinfo', (req, res) => {
     })
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
+// Promises Style
 email = 'masaok@gmail.com'
 const uri = 'https://api.zoom.us/v2/users/' + email
 
@@ -132,7 +133,7 @@ console.log(options)
 rp(options)
   .then(function(body) {
     // POST succeeded...
-    console.log('RP POST SUCCESS')
+    console.log('RP ASYNC POST SUCCESS')
     console.log(body)
   })
   .catch(function(err) {
@@ -141,6 +142,7 @@ rp(options)
     console.log(err)
   })
 
+// Async/Await style
 const main = async () => {
   email = 'masaok@gmail.com'
   const uri = 'https://api.zoom.us/v2/users/' + email
@@ -174,5 +176,9 @@ const main = async () => {
       console.log('RP POST ERROR')
       console.log(err)
     })
+
+  const body = await rp(options)
+  console.log('RP AWAIT POST SUCCESS')
+  console.log(body)
 }
 main()
